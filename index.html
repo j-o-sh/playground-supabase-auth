@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/brands.css" rel="stylesheet">
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/solid.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <script type="module" src="./app.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <h1>Who am I?</h1>
+    <button 
+      aria-label="Login with Github"
+      data-when-clicked="loginWithGithub">
+      <i class="fa-brands fa-github"></i>
+    </button>
   </body>
 </html>
