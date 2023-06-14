@@ -73,3 +73,15 @@ button.state-busy {
     transform: rotate(359deg)
   }
 }
+
+.output {
+  margin: 4rem;
+  padding: 1rem;
+  transition: all 75ms;
+  color: var(--c-accent-two);
+}
+
+.output.output-set {
+  border: 1px solid var(--c-brand);
+  border-radius: .5rem;
+}

@@ -1,21 +1,26 @@
 // @ts-nocheck
+import auth from './auth'
+
 const actions = {
   loginWithGithub: async function () {
-    const result = await new Promise(done => setTimeout(() => done({
-      foo: 'bar'
-    }), 2000))
-    return result
+    return await auth.github()
   }
 }
 
 document.addEventListener('click', async e => {
   const btn = e.target?.closest('[data-when-clicked]')
-  if (!btn) return
-  const fn = actions[btn.dataset.whenClicked]
-  if (!fn) return
+  const fn = btn && actions[btn.dataset.whenClicked]
+  if (!fn || !btn) return
+  const out = document.querySelector(btn.dataset.outputTo)
 
   btn.classList.toggle('state-busy', true)
   const r = await fn()
   btn.classList.toggle('state-busy', false)
-  console.log(r)
+
+  if (out) {
+    out.closest('.output')?.classList.toggle('output-set', true)
+    out.innerHTML = JSON.stringify(r, null, 2)
+  } else {
+    console.log(r)
+  }
 })
