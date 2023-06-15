@@ -20,6 +20,7 @@ export default {
       provider: 'github',
       options: {
         // redirectTo: location.href
+        skipBrowserRedirect: true
       }
     })
   }
