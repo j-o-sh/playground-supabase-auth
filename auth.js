@@ -17,7 +17,10 @@ export default {
   },
   github: async function () {
     return await supabase.auth.signInWithOAuth({
-      provider: 'github'
+      provider: 'github',
+      options: {
+        redirectTo: location.href
+      }
     })
   }
 }
