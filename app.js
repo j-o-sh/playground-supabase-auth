@@ -13,7 +13,7 @@ function shortenValue(v) {
       if (Array.isArray(v)) {
         return v.map(vv => shortenValue(vv))
       } else {
-        return shortenValue(v)
+        return shorten(v)
       }
     case 'string' :
       return v.length > 50 ? v.substring(0, 47) + '...' : v
