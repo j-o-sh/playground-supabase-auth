@@ -6,11 +6,31 @@ const actions = {
   appTest: auth.things
 }
 
+function shorten(obj) {
+  if (!obj) { return obj }
+  return Object.fromEntries(Object.entries(obj)
+    .map(([k, v]) => [k,
+      (() => { switch (typeof v) {
+        case 'object':
+          if (Array.isArray(v)) {
+            return v.map(vv => shorten(vv))
+          } else {
+            return shorten(v)
+          }
+        case 'string' :
+          return v.length > 50 ? v.substring(0, 47) + '...' : v
+        default:
+          return v
+      }})()]
+    )
+  )  
+}
+
 function output(msg, { to } = {}) {
   const out = to && document.querySelector(to)
   if (out) {
-    out.closest('.output')?.classList.toggle('output-set', true)
-    out.innerHTML = JSON.stringify(msg, null, 2)
+    out.closest('.output')?.classList.toggle('output-set', true)    
+    out.innerHTML = JSON.stringify(shorten(msg), null, 2)
   } else {
     console.log(msg)
   }
@@ -29,6 +49,10 @@ document.addEventListener('click', async e => {
 })
 
 setTimeout(async () => {
-  output(await auth.check(), { to: '#session' })
+  output(
+    await auth.check(), 
+    // { x: 1, y: 'lishdfroiasdbhpoaibnrolsidjfhvksjldhfvbklsjhdfblsajhdbvflaijdfvlaidjfnvlaijfndvlaidjfnvlksjdfvnlsdjfhbvlsidbfjlskdjfbnsldibfjnsdikfjnvbs;dfjvnsldfkjvnsldkfjvnskldjfhvbnskldjfhvblsdjkfhbvlsdjfkbvlsdfjgkbsdlfgjkbh'},
+    { to: '#session code' }
+  )
   // output({a:1}, { to: '#session' })
 })
