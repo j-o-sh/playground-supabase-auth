@@ -6,22 +6,26 @@ const actions = {
   appTest: auth.things
 }
 
+function shortenValue(v) {
+  if (!v) return v
+  switch (typeof v) {
+    case 'object':
+      if (Array.isArray(v)) {
+        return v.map(vv => shortenValue(vv))
+      } else {
+        return shortenValue(v)
+      }
+    case 'string' :
+      return v.length > 50 ? v.substring(0, 47) + '...' : v
+    default:
+      return v
+  }
+}
+
 function shorten(obj) {
   if (!obj) { return obj }
   return Object.fromEntries(Object.entries(obj)
-    .map(([k, v]) => [k,
-      (() => { switch (typeof v) {
-        case 'object':
-          if (Array.isArray(v)) {
-            return v.map(vv => shorten(vv))
-          } else {
-            return shorten(v)
-          }
-        case 'string' :
-          return v.length > 50 ? v.substring(0, 47) + '...' : v
-        default:
-          return v
-      }})()]
+    .map(([k, v]) => [k, shortenValue(v)]
     )
   )  
 }
@@ -51,7 +55,7 @@ document.addEventListener('click', async e => {
 setTimeout(async () => {
   output(
     await auth.check(), 
-    // { x: 1, y: 'lishdfroiasdbhpoaibnrolsidjfhvksjldhfvbklsjhdfblsajhdbvflaijdfvlaidjfnvlaijfndvlaidjfnvlksjdfvnlsdjfhbvlsidbfjlskdjfbnsldibfjnsdikfjnvbs;dfjvnsldfkjvnsldkfjvnskldjfhvbnskldjfhvblsdjkfhbvlsdjfkbvlsdfjgkbsdlfgjkbh'},
+    // { x: 1, aa: ['foobar'], y: 'lishdfroiasdbhpoaibnrolsidjfhvksjldhfvbklsjhdfblsajhdbvflaijdfvlaidjfnvlaijfndvlaidjfnvlksjdfvnlsdjfhbvlsidbfjlskdjfbnsldibfjnsdikfjnvbs;dfjvnsldfkjvnsldkfjvnskldjfhvbnskldjfhvblsdjkfhbvlsdjfkbvlsdfjgkbsdlfgjkbh'},
     { to: '#session code' }
   )
   // output({a:1}, { to: '#session' })
