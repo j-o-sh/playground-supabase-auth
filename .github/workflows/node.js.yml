@@ -41,12 +41,14 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: pages-build
+      - name: Inspect distribution
+        run: ls -al
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './dist'
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
