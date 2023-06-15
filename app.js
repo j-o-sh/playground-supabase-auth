@@ -3,7 +3,8 @@ import auth from './auth'
 
 const actions = {
   loginWithGithub: auth.github,
-  appTest: auth.things
+  appTest: auth.things,
+  logout: auth.logout,
 }
 
 function shortenValue(v) {

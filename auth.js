@@ -26,5 +26,8 @@ export default {
   },
   check: async function () {
     return await supabase.auth.getSession()
+  },
+  logout: async function () {
+    return await supabase.auth.signOut()
   }
 }
