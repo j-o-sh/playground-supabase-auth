@@ -27,7 +27,7 @@ export default {
       console.error('AUTH', error)
       return false
     } else {
-      return await supabase.auth.getSession()
+      return await supabase.auth.getUser()
     }
   }
 }
