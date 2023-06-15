@@ -2,9 +2,8 @@
 import auth from './auth'
 
 const actions = {
-  loginWithGithub: async function () {
-    return await auth.github()
-  }
+  loginWithGithub: auth.github,
+  appTest: auth.things
 }
 
 document.addEventListener('click', async e => {

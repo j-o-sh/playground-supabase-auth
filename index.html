@@ -13,13 +13,22 @@
   </head>
   <body>
     <h1>Who am I?</h1>
-    <button 
-      aria-label="Login with Github"
-      data-when-clicked="loginWithGithub"
-      data-output-to="#result > code"
-    >
-      <i class="fa-brands fa-github"></i>
-    </button>
+    <nav>
+      <button 
+        aria-label="Test App Wires"
+        data-when-clicked="appTest"
+        data-output-to="#result > code"
+      >
+        <i class="fa fa-robot"></i>
+      </button>
+      <button 
+        aria-label="Login with Github"
+        data-when-clicked="loginWithGithub"
+        data-output-to="#result > code"
+      >
+        <i class="fa-brands fa-github"></i>
+      </button>
+    </nav>
     <pre id="result" class="output"><code></code></pre>
   </body>
 </html>

@@ -74,6 +74,19 @@ button.state-busy {
   }
 }
 
+nav {
+  height: 7rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: 3rem;
+}
+
+nav > button {
+  margin: 0;
+  height: 100%;
+}
+
 .output {
   margin: 4rem;
   padding: 1rem;
