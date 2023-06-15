@@ -23,11 +23,13 @@ export default {
         skipBrowserRedirect: true
       }
     })
-    if (error) {
-      console.error('AUTH', error)
-      return false
-    } else {
-      return await supabase.auth.getUser()
-    }
+    window.supa = supabase
+    return { data, error }
+    // if (error) {
+    //   console.error('AUTH', error)
+    //   return false
+    // } else {
+    //   return await supabase.auth.getUser()
+    // }
   }
 }
