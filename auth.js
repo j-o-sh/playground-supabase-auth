@@ -22,13 +22,9 @@ export default {
         redirectTo: location.href
       }
     })
-    window.supa = supabase
     return { data, error }
-    // if (error) {
-    //   console.error('AUTH', error)
-    //   return false
-    // } else {
-    //   return await supabase.auth.getUser()
-    // }
+  },
+  check: async function () {
+    return await supabase.auth.getSession()
   }
 }
