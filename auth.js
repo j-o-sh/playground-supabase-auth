@@ -16,12 +16,18 @@ export default {
     return result
   },
   github: async function () {
-    return await supabase.auth.signInWithOAuth({
+    const { data, error } =  await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
         // redirectTo: location.href
         skipBrowserRedirect: true
       }
     })
+    if (error) {
+      console.error('AUTH', error)
+      return false
+    } else {
+      return await supabase.auth.getSession()
+    }
   }
 }
